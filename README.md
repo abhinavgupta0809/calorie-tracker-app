@@ -55,9 +55,10 @@ version, I have closed three of the four gaps I first called out:
   cost. See [evals/EVALS.md](evals/EVALS.md). From the latest run, calorie estimates
   landed within 20% of the reference value on common meals 100% of the time, and the
   answer stayed within about 1% across English, Hindi, Mandarin, Bengali, and Spanish.
-  The suite also found two real problems: the meal box can be hijacked with a typed
-  instruction, and the confidence label is not useful yet. Finding those is the whole
-  point of evals.
+  The suite also caught a real security hole: the meal box could be hijacked by a typed
+  instruction. I hardened the prompt and re-ran, and the attack cases now pass. It also
+  flagged that the confidence label is not useful yet. Finding and fixing things like
+  that is the whole point of evals.
 - ✅ Per-user instances. Every visitor now gets their own profile and meal log through
   an anonymous browser id, with no login. Opening the link no longer shows you someone
   else's data.
@@ -70,16 +71,15 @@ Still open, and I want to be honest about it:
   browser and stored in a JSON file on the server. There is no cross-device sync, and
   the data resets if the browser storage is cleared or the host restarts. A real
   database and login is the next step.
-- Security. Storing user data safely, and hardening the prompt against the injection
-  the evals just found, is the part a real product still needs a real team for. In my
-  view that is the real unsolved problem with vibe-coded apps in general.
+- Security. Storing user data safely is the part a real product still needs a real team
+  for. In my view that is the real unsolved problem with vibe-coded apps in general.
 
 ## What's next
 
 In priority order:
 
 1. A real database and per-user login (email or Google) for durability and cross-device sync
-2. A fix for the prompt injection the evals found, plus a real security model for user data
+2. A real security model for storing user data, plus more injection cases as new attack styles show up
 3. A way to test confidence calibration, by adding vague but labeled meals so the confidence label can earn trust
 4. Photo-based meal logging
 
