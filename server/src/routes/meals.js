@@ -18,7 +18,7 @@ router.post('/estimate', async (req, res, next) => {
 
 router.post('/', async (req, res, next) => {
   try {
-    const state = await readState();
+    const state = await readState(req.userId);
     if (!state.profile) {
       return res.status(400).json({ error: 'Profile required' });
     }
@@ -52,7 +52,7 @@ router.post('/', async (req, res, next) => {
       date,
     };
     state.meals.push(meal);
-    await writeState(state);
+    await writeState(req.userId, state);
     res.status(201).json(meal);
   } catch (e) {
     next(e);
@@ -62,7 +62,7 @@ router.post('/', async (req, res, next) => {
 router.get('/', async (req, res, next) => {
   try {
     const date = req.query.date ? assertDateKey(req.query.date) : null;
-    const state = await readState();
+    const state = await readState(req.userId);
     let meals = state.meals || [];
     if (date) {
       meals = meals.filter((m) => m.date === date);
@@ -77,13 +77,13 @@ router.get('/', async (req, res, next) => {
 router.delete('/:id', async (req, res, next) => {
   try {
     const { id } = req.params;
-    const state = await readState();
+    const state = await readState(req.userId);
     const idx = state.meals.findIndex((m) => m.id === id);
     if (idx === -1) {
       return res.status(404).json({ error: 'Meal not found' });
     }
     const [removed] = state.meals.splice(idx, 1);
-    await writeState(state);
+    await writeState(req.userId, state);
     res.json({ ok: true, meal: removed });
   } catch (e) {
     next(e);

@@ -1,3 +1,5 @@
+import { getUserId } from '../utils/userId.js';
+
 const BASE = '';
 
 async function handle(res) {
@@ -18,72 +20,56 @@ async function handle(res) {
   return data;
 }
 
+// Single place that attaches the per-visitor id to every request.
+function request(path, { method = 'GET', body } = {}) {
+  const headers = { 'x-user-id': getUserId() };
+  if (body !== undefined) headers['Content-Type'] = 'application/json';
+  return fetch(`${BASE}${path}`, {
+    method,
+    headers,
+    body: body !== undefined ? JSON.stringify(body) : undefined,
+  });
+}
+
 export async function getProfile() {
-  const res = await fetch(`${BASE}/api/profile`);
+  const res = await request('/api/profile');
   if (res.status === 404) return null;
   return handle(res);
 }
 
 export async function setupProfile(body) {
-  const res = await fetch(`${BASE}/api/profile/setup`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
-  return handle(res);
+  return handle(await request('/api/profile/setup', { method: 'POST', body }));
 }
 
 export async function patchProfile(body) {
-  const res = await fetch(`${BASE}/api/profile`, {
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
-  return handle(res);
+  return handle(await request('/api/profile', { method: 'PATCH', body }));
 }
 
 export async function estimateMeal(description) {
-  const res = await fetch(`${BASE}/api/meals/estimate`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ description }),
-  });
-  return handle(res);
+  return handle(await request('/api/meals/estimate', { method: 'POST', body: { description } }));
 }
 
 export async function saveMeal(body) {
-  const res = await fetch(`${BASE}/api/meals`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(body),
-  });
-  return handle(res);
+  return handle(await request('/api/meals', { method: 'POST', body }));
 }
 
 export async function getMeals(date) {
   const q = date ? `?date=${encodeURIComponent(date)}` : '';
-  const res = await fetch(`${BASE}/api/meals${q}`);
-  return handle(res);
+  return handle(await request(`/api/meals${q}`));
 }
 
 export async function deleteMeal(id) {
-  const res = await fetch(`${BASE}/api/meals/${encodeURIComponent(id)}`, {
-    method: 'DELETE',
-  });
-  return handle(res);
+  return handle(await request(`/api/meals/${encodeURIComponent(id)}`, { method: 'DELETE' }));
 }
 
 export async function getProgressDaily(date) {
-  const res = await fetch(`${BASE}/api/progress/daily?date=${encodeURIComponent(date)}`);
-  return handle(res);
+  return handle(await request(`/api/progress/daily?date=${encodeURIComponent(date)}`));
 }
 
 export async function getProgressWeekly() {
-  const res = await fetch(`${BASE}/api/progress/weekly`);
-  return handle(res);
+  return handle(await request('/api/progress/weekly'));
 }
 
 export async function getProgressMonthly() {
-  const res = await fetch(`${BASE}/api/progress/monthly`);
-  return handle(res);
+  return handle(await request('/api/progress/monthly'));
 }

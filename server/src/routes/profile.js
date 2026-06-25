@@ -45,19 +45,19 @@ function buildProfile(body) {
 
 router.post('/setup', async (req, res, next) => {
   try {
-    const state = await readState();
+    const state = await readState(req.userId);
     const profile = buildProfile(req.body);
     state.profile = profile;
-    await writeState(state);
+    await writeState(req.userId, state);
     res.status(201).json(profile);
   } catch (e) {
     next(e);
   }
 });
 
-router.get('/', async (_req, res, next) => {
+router.get('/', async (req, res, next) => {
   try {
-    const state = await readState();
+    const state = await readState(req.userId);
     if (!state.profile) {
       return res.status(404).json({ error: 'No profile' });
     }
@@ -69,7 +69,7 @@ router.get('/', async (_req, res, next) => {
 
 router.patch('/', async (req, res, next) => {
   try {
-    const state = await readState();
+    const state = await readState(req.userId);
     if (!state.profile) {
       return res.status(404).json({ error: 'No profile' });
     }
@@ -107,7 +107,7 @@ router.patch('/', async (req, res, next) => {
       carbsTargetG: macros.carbsG,
       fatTargetG: macros.fatG,
     };
-    await writeState(state);
+    await writeState(req.userId, state);
     res.json(state.profile);
   } catch (e) {
     next(e);

@@ -6,6 +6,7 @@ import MacroSummary from '../components/MacroSummary.jsx';
 import ProgressCard from '../components/ProgressCard.jsx';
 import { getProgressDaily, getProgressMonthly, getProgressWeekly } from '../api/client.js';
 import { todayKey } from '../utils/date.js';
+import analytics from '../analytics.js';
 
 export default function Progress() {
   const [tab, setTab] = useState('today');
@@ -15,6 +16,10 @@ export default function Progress() {
   const [err, setErr] = useState('');
 
   const date = todayKey();
+
+  useEffect(() => {
+    analytics.capture('progress_viewed', { tab: 'today' });
+  }, []);
 
   useEffect(() => {
     let cancelled = false;

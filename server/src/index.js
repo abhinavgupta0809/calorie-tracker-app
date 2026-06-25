@@ -8,6 +8,7 @@ import { fileURLToPath } from 'url';
 import profileRouter from './routes/profile.js';
 import mealsRouter from './routes/meals.js';
 import progressRouter from './routes/progress.js';
+import { requireUser } from './middleware/requireUser.js';
 
 const envCandidates = [
   path.resolve(process.cwd(), '.env'),
@@ -33,6 +34,7 @@ const app = express();
 app.use(
   cors({
     origin: ['http://localhost:5173', 'http://127.0.0.1:5173'],
+    allowedHeaders: ['Content-Type', 'x-user-id'],
     credentials: true,
   })
 );
@@ -42,9 +44,9 @@ app.get('/api/health', (_req, res) => {
   res.json({ ok: true });
 });
 
-app.use('/api/profile', profileRouter);
-app.use('/api/meals', mealsRouter);
-app.use('/api/progress', progressRouter);
+app.use('/api/profile', requireUser, profileRouter);
+app.use('/api/meals', requireUser, mealsRouter);
+app.use('/api/progress', requireUser, progressRouter);
 
 if (fs.existsSync(CLIENT_DIST_PATH)) {
   app.use(express.static(CLIENT_DIST_PATH));

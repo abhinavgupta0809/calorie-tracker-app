@@ -39,7 +39,7 @@ router.get('/daily', async (req, res, next) => {
       e.status = 400;
       throw e;
     }
-    const state = await readState();
+    const state = await readState(req.userId);
     if (!state.profile) {
       return res.status(404).json({ error: 'No profile' });
     }
@@ -62,9 +62,9 @@ router.get('/daily', async (req, res, next) => {
   }
 });
 
-router.get('/weekly', async (_req, res, next) => {
+router.get('/weekly', async (req, res, next) => {
   try {
-    const state = await readState();
+    const state = await readState(req.userId);
     if (!state.profile) {
       return res.status(404).json({ error: 'No profile' });
     }
@@ -96,9 +96,9 @@ router.get('/weekly', async (_req, res, next) => {
   }
 });
 
-router.get('/monthly', async (_req, res, next) => {
+router.get('/monthly', async (req, res, next) => {
   try {
-    const state = await readState();
+    const state = await readState(req.userId);
     if (!state.profile) {
       return res.status(404).json({ error: 'No profile' });
     }

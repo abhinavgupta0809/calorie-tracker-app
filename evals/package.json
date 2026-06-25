@@ -1,0 +1,11 @@
+{
+  "name": "calorie-tracker-evals",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Offline eval harness for the LLM meal-nutrition estimator",
+  "scripts": {
+    "start": "node src/runEval.js",
+    "eval": "node src/runEval.js"
+  }
+}

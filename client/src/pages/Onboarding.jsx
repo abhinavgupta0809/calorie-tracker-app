@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { setupProfile } from '../api/client.js';
+import analytics from '../analytics.js';
 import {
   bmiCategory,
   categoryColor,
@@ -50,6 +51,7 @@ export default function Onboarding() {
         sex,
         targetWeightKg: Number(targetWeightKg),
       });
+      analytics.capture('onboarding_completed', { sex, targetWeightKg: Number(targetWeightKg) });
       navigate('/dashboard', { replace: true });
     } catch (err) {
       setError(err.message || 'Could not save profile');

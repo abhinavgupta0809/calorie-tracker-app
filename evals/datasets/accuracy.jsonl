@@ -1,0 +1,26 @@
+{"id":"acc-01","description":"1 medium banana, about 118 grams","ground_truth":{"cal":105,"protein":1,"carbs":27,"fat":0},"source":"USDA FoodData Central (approx)","tags":["fruit","single-item"]}
+{"id":"acc-02","description":"2 large eggs, scrambled with no oil or butter","ground_truth":{"cal":143,"protein":13,"carbs":1,"fat":10},"source":"USDA FoodData Central (approx)","tags":["breakfast","protein"]}
+{"id":"acc-03","description":"100 grams grilled skinless chicken breast","ground_truth":{"cal":165,"protein":31,"carbs":0,"fat":4},"source":"USDA FoodData Central (approx)","tags":["protein","measured-portion"]}
+{"id":"acc-04","description":"1 cup cooked white rice, about 158 grams","ground_truth":{"cal":205,"protein":4,"carbs":45,"fat":0},"source":"USDA FoodData Central (approx)","tags":["carb","staple"]}
+{"id":"acc-05","description":"1 medium apple, about 182 grams","ground_truth":{"cal":95,"protein":0,"carbs":25,"fat":0},"source":"USDA FoodData Central (approx)","tags":["fruit","single-item"]}
+{"id":"acc-06","description":"1 slice of plain whole wheat bread, about 28 grams","ground_truth":{"cal":69,"protein":4,"carbs":12,"fat":1},"source":"USDA FoodData Central (approx)","tags":["carb","single-item"]}
+{"id":"acc-07","description":"1 tablespoon of peanut butter, about 16 grams","ground_truth":{"cal":94,"protein":4,"carbs":3,"fat":8},"source":"USDA FoodData Central (approx)","tags":["fat","spread"]}
+{"id":"acc-08","description":"1 cup of whole milk, about 244 grams","ground_truth":{"cal":149,"protein":8,"carbs":12,"fat":8},"source":"USDA FoodData Central (approx)","tags":["dairy","drink"]}
+{"id":"acc-09","description":"100 grams of raw almonds","ground_truth":{"cal":579,"protein":21,"carbs":22,"fat":50},"source":"USDA FoodData Central (approx)","tags":["fat","nuts","measured-portion"]}
+{"id":"acc-10","description":"1 medium baked potato, plain, about 173 grams","ground_truth":{"cal":161,"protein":4,"carbs":37,"fat":0},"source":"USDA FoodData Central (approx)","tags":["carb","single-item"]}
+{"id":"acc-11","description":"100 grams of baked salmon","ground_truth":{"cal":206,"protein":22,"carbs":0,"fat":12},"source":"USDA FoodData Central (approx)","tags":["protein","fish","measured-portion"]}
+{"id":"acc-12","description":"1 cup of cooked oatmeal made with water, about 234 grams","ground_truth":{"cal":158,"protein":6,"carbs":27,"fat":3},"source":"USDA FoodData Central (approx)","tags":["carb","breakfast"]}
+{"id":"acc-13","description":"1 large hard-boiled egg","ground_truth":{"cal":78,"protein":6,"carbs":1,"fat":5},"source":"USDA FoodData Central (approx)","tags":["protein","single-item"]}
+{"id":"acc-14","description":"1 cup of cooked broccoli, about 156 grams","ground_truth":{"cal":55,"protein":4,"carbs":11,"fat":1},"source":"USDA FoodData Central (approx)","tags":["vegetable"]}
+{"id":"acc-15","description":"100 grams of cheddar cheese","ground_truth":{"cal":403,"protein":25,"carbs":1,"fat":33},"source":"USDA FoodData Central (approx)","tags":["dairy","fat","measured-portion"]}
+{"id":"acc-16","description":"1 plain bagel, about 105 grams","ground_truth":{"cal":277,"protein":11,"carbs":55,"fat":2},"source":"USDA FoodData Central (approx)","tags":["carb","single-item"]}
+{"id":"acc-17","description":"1 cup of cooked plain spaghetti, about 140 grams","ground_truth":{"cal":221,"protein":8,"carbs":43,"fat":1},"source":"USDA FoodData Central (approx)","tags":["carb","staple"]}
+{"id":"acc-18","description":"1 medium avocado, about 150 grams","ground_truth":{"cal":240,"protein":3,"carbs":13,"fat":22},"source":"USDA FoodData Central (approx)","tags":["fat","fruit"]}
+{"id":"acc-19","description":"1 can of regular cola, 12 fluid ounces","ground_truth":{"cal":140,"protein":0,"carbs":39,"fat":0},"source":"USDA FoodData Central (approx)","tags":["drink","sugar"]}
+{"id":"acc-20","description":"1 cup of nonfat plain Greek yogurt, about 245 grams","ground_truth":{"cal":130,"protein":23,"carbs":9,"fat":0},"source":"USDA FoodData Central (approx)","tags":["dairy","protein"]}
+{"id":"acc-21","description":"100 grams of boiled white potato","ground_truth":{"cal":87,"protein":2,"carbs":20,"fat":0},"source":"USDA FoodData Central (approx)","tags":["carb","measured-portion"]}
+{"id":"acc-22","description":"1 tablespoon of olive oil, about 14 grams","ground_truth":{"cal":119,"protein":0,"carbs":0,"fat":14},"source":"USDA FoodData Central (approx)","tags":["fat","oil"]}
+{"id":"acc-23","description":"1 cup of cooked black beans, about 172 grams","ground_truth":{"cal":227,"protein":15,"carbs":41,"fat":1},"source":"USDA FoodData Central (approx)","tags":["legume","protein"]}
+{"id":"acc-24","description":"100 grams of cooked 85% lean ground beef","ground_truth":{"cal":250,"protein":26,"carbs":0,"fat":15},"source":"USDA FoodData Central (approx)","tags":["protein","meat","measured-portion"]}
+{"id":"acc-25","description":"1 medium orange, about 131 grams","ground_truth":{"cal":62,"protein":1,"carbs":15,"fat":0},"source":"USDA FoodData Central (approx)","tags":["fruit","single-item"]}
+{"id":"acc-26","description":"1 cup of halved strawberries, about 152 grams","ground_truth":{"cal":49,"protein":1,"carbs":12,"fat":0},"source":"USDA FoodData Central (approx)","tags":["fruit"]}

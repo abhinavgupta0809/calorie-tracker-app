@@ -5,6 +5,7 @@ import BackButton from '../components/BackButton.jsx';
 import LayoutShell from '../components/LayoutShell.jsx';
 import { estimateMeal, saveMeal } from '../api/client.js';
 import { todayKey } from '../utils/date.js';
+import analytics from '../analytics.js';
 
 const emptyEstimate = () => ({
   summary: '',
@@ -50,9 +51,16 @@ export default function LogMeal() {
   async function onEstimate() {
     setError('');
     setLoadingEst(true);
+    const startedAt = performance.now();
     try {
       const res = await estimateMeal(description);
       applyResult(res);
+      analytics.capture('meal_estimated', {
+        confidence: res.confidence,
+        source: res.source,
+        calories: res.calories,
+        latency_ms: Math.round(performance.now() - startedAt),
+      });
     } catch (e) {
       setError('Could not estimate nutrition right now. Please try again.');
     } finally {
@@ -83,6 +91,11 @@ export default function LogMeal() {
         confidence: form.confidence,
         manuallyEdited: edited,
         date: todayKey(),
+      });
+      analytics.capture('meal_logged', {
+        manuallyEdited: edited,
+        calories: Number(form.calories),
+        confidence: form.confidence,
       });
       navigate('/dashboard', { state: { flash: 'Meal saved successfully' } });
     } catch (e) {
